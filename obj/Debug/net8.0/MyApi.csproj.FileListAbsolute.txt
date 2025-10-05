@@ -155,3 +155,14 @@
 /workspaces/AI-project/MyApi/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Diagnostics.EventLog.Messages.dll
 /workspaces/AI-project/MyApi/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Diagnostics.EventLog.dll
 /workspaces/AI-project/MyApi/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/web.config
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/appsettings.Development.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/appsettings.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/MyApi.deps.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/MyApi.runtimeconfig.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/publish/web.config
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/publish/appsettings.Development.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/publish/appsettings.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/publish/MyApi.deps.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/publish/MyApi.runtimeconfig.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/MyApi.staticwebassets.runtime.json

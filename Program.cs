@@ -6,14 +6,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseStaticFiles(); // Needed for serving custom JS/CSS files
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-        c.RoutePrefix = string.Empty; // sets Swagger UI at root "/"
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.RoutePrefix = string.Empty; // Swagger UI at root "/"
+        c.InjectStylesheet("/swagger-ui/custom.css");
+        c.InjectJavascript("/swagger-ui/custom.js");
     });
 }
 

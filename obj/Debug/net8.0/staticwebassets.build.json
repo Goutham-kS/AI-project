@@ -1,11 +1,58 @@
 {
   "Version": 1,
-  "Hash": "lz3V7MICChVTha4Wu2HmNJu8vg7UhsoN4/IWoYwrb24=",
+  "Hash": "UJbCeo7HboaASqmb5v7l6S+ydJxlLr4crPkrI3EvIIM=",
   "Source": "MyApi",
   "BasePath": "_content/MyApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "MyApi/wwwroot",
+      "Source": "MyApi",
+      "ContentRoot": "/workspaces/AI-project/MyApi/wwwroot/",
+      "BasePath": "_content/MyApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/workspaces/AI-project/MyApi/wwwroot/swagger-ui/custom.css",
+      "SourceId": "MyApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspaces/AI-project/MyApi/wwwroot/",
+      "BasePath": "_content/MyApi",
+      "RelativePath": "swagger-ui/custom.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/swagger-ui/custom.css"
+    },
+    {
+      "Identity": "/workspaces/AI-project/MyApi/wwwroot/swagger-ui/custom.js",
+      "SourceId": "MyApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspaces/AI-project/MyApi/wwwroot/",
+      "BasePath": "_content/MyApi",
+      "RelativePath": "swagger-ui/custom.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/swagger-ui/custom.js"
+    }
+  ]
 }
