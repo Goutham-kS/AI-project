@@ -67,10 +67,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_12611FAE0C004686AC3899A91E69430C }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6C95A165729F4E299D027031220DE959 }}
 
-      # Deploy to Azure Web App
+    
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'gitCodeWebCode'
           slot-name: 'Production'
-          package: publish\myapp
+          package: ./dotnet-app
