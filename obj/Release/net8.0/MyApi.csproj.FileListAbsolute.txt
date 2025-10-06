@@ -160,3 +160,9 @@
 /workspaces/AI-project/MyApi/bin/Release/net8.0/publish/appsettings.json
 /workspaces/AI-project/MyApi/bin/Release/net8.0/publish/MyApi.deps.json
 /workspaces/AI-project/MyApi/bin/Release/net8.0/publish/MyApi.runtimeconfig.json
+/workspaces/AI-project/MyApi/bin/Release/net8.0/publish/publish/web.config
+/workspaces/AI-project/MyApi/bin/Release/net8.0/publish/publish/appsettings.Development.json
+/workspaces/AI-project/MyApi/bin/Release/net8.0/publish/publish/appsettings.json
+/workspaces/AI-project/MyApi/bin/Release/net8.0/publish/publish/MyApi.deps.json
+/workspaces/AI-project/MyApi/bin/Release/net8.0/publish/publish/MyApi.runtimeconfig.json
+/workspaces/AI-project/MyApi/bin/Release/net8.0/MyApi.staticwebassets.runtime.json
