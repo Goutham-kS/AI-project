@@ -31,9 +31,11 @@ jobs:
       - name: Publish project
         run: |
           $publishDir = "$PWD\publish\myapp"
+          if (Test-Path $publishDir) { Remove-Item $publishDir -Recurse -Force }
           mkdir $publishDir
           dotnet publish MyApi.csproj --configuration Release --output $publishDir
           echo "Published to $publishDir"
+
 
 
       # Upload published files as artifact
