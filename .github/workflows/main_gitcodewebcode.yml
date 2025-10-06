@@ -13,23 +13,29 @@ jobs:
       contents: read
 
     steps:
+      # Checkout the code
       - uses: actions/checkout@v4
 
+      # Setup .NET SDK
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.x'
 
+      # Build the project
       - name: Build project
         run: dotnet build MyApi.csproj --configuration Release
 
+      # Publish project to a relative path
       - name: Publish project
         run: |
           $publishDir = "$PWD\publish\myapp"
+          if (Test-Path $publishDir) { Remove-Item $publishDir -Recurse -Force }
           mkdir $publishDir
           dotnet publish MyApi.csproj --configuration Release --output $publishDir
           echo "Published to $publishDir"
 
+      # Upload published files as artifact
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -44,11 +50,13 @@ jobs:
       contents: read
 
     steps:
+      # Download artifact from build job
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: dotnet-app
 
+      # Login to Azure
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -56,6 +64,7 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_12611FAE0C004686AC3899A91E69430C }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6C95A165729F4E299D027031220DE959 }}
 
+      # Deploy to Azure Web App
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
