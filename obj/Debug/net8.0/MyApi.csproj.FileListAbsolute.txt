@@ -166,3 +166,18 @@
 /workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/publish/MyApi.deps.json
 /workspaces/AI-project/MyApi/bin/Debug/net8.0/publish/publish/MyApi.runtimeconfig.json
 /workspaces/AI-project/MyApi/bin/Debug/net8.0/MyApi.staticwebassets.runtime.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/publish/publish/web.config
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/publish/web.config
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/web.config
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/appsettings.Development.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/appsettings.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/MyApi.deps.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/MyApi.runtimeconfig.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/publish/appsettings.Development.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/publish/appsettings.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/publish/MyApi.deps.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/publish/MyApi.runtimeconfig.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/publish/publish/appsettings.Development.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/publish/publish/appsettings.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/publish/publish/MyApi.deps.json
+/workspaces/AI-project/MyApi/bin/Debug/net8.0/C:/Program Files/dotnet/myapp/publish/publish/MyApi.runtimeconfig.json
