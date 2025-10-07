@@ -74,6 +74,6 @@ jobs:
           app-name: 'gitCodeWebCode'
           slot-name: 'Production'
         
-          package: AI-project/dotnet-app
+          package: AI-project/dotnet-app/publish
          
 
