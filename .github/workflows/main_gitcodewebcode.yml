@@ -74,6 +74,6 @@ jobs:
           app-name: 'gitCodeWebCode'
           slot-name: 'Production'
         
-          package: ./publish
+          package: dotnet-app/publish
          
 
