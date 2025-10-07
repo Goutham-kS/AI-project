@@ -24,7 +24,7 @@ jobs:
 
       # Build the project
       - name: Build project
-        run: dotnet build MyApi/MyApi.csproj --configuration Release
+        run: dotnet build MyApi.csproj --configuration Release
 
       # Publish project to a relative path
       
@@ -33,7 +33,7 @@ jobs:
           $publishDir = "$PWD\publish\myapp"
           if (Test-Path $publishDir) { Remove-Item $publishDir -Recurse -Force }
           mkdir $publishDir
-          dotnet publish MyApi/MyApi.csproj --configuration Release --output $publishDir
+          dotnet publish MyApi.csproj --configuration Release --output $publishDir
           echo "Published to $publishDir"
 
 
