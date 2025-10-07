@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GitCommitHash>ad4aae50a0eda16332a3e3835b24c761cac6574e</GitCommitHash>
   </PropertyGroup>
 
 <ItemGroup>
