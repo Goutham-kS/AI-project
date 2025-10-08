@@ -1,18 +1,31 @@
-#goutham-header {
-    background-color: #f8f9fa;
-    padding: 15px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: 600;
-    color: #333;
-    border-bottom: 2px solid #ccc;
-}
-#goutham-header a {
-    color: #007bff;
-    text-decoration: none;
-    margin-left: 10px;
+
+/* === Goutham Text Styles (next to MyApi title) === */
+#goutham-text {
     font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    margin-left: 10px;
 }
-#goutham-header a:hover {
+
+#goutham-text a {
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Google link color */
+#goutham-text a[href*="google"] {
+    color: #1a73e8; /* Google blue */
+}
+
+/* Facebook link color */
+#goutham-text a[href*="facebook"] {
+    color: #1877f2; /* Facebook blue */
+}
+
+/* Hover effect */
+#goutham-text a:hover {
     text-decoration: underline;
 }
