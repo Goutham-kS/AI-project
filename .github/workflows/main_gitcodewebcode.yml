@@ -13,8 +13,11 @@ jobs:
       contents: read
 
     steps:
-      # Checkout the code
-      - uses: actions/checkout@v4
+      # Checkout the code - Added token for explicit authentication
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # Setup .NET SDK
       - name: Set up .NET
@@ -27,15 +30,15 @@ jobs:
         run: dotnet build MyApi.csproj --configuration Release
 
       # Publish project to a relative path
-      
+      # Uses $PWD\publish\myapp as the publish directory
       - name: Publish project
         run: |
           $publishDir = "$PWD\publish\myapp"
+          # Ensure directory is clean before publishing
           if (Test-Path $publishDir) { Remove-Item $publishDir -Recurse -Force }
           mkdir $publishDir
           dotnet publish MyApi.csproj --configuration Release --output $publishDir
           echo "Published to $publishDir"
-
 
 
       # Upload published files as artifact
@@ -43,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dotnet-app
-          path: publish\myapp
+          path: publish\myapp # Path matches the output directory used in the Publish step
 
   deploy:
     runs-on: windows-latest
@@ -58,6 +61,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dotnet-app
+          # Artifact contents are downloaded to the root of this job's workspace (./)
 
       # Login to Azure
       - name: Login to Azure
@@ -67,13 +71,11 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_12611FAE0C004686AC3899A91E69430C }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6C95A165729F4E299D027031220DE959 }}
 
-    
+      
+      # FIX: The package path is corrected to '.' to point to the downloaded artifact contents.
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'gitCodeWebCode'
           slot-name: 'Production'
-        
-          package: .
-         
-
+          package: . 
