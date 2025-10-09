@@ -15,32 +15,32 @@ jobs:
       contents: read # Required to checkout the code
 
     steps:
-      # 1. Checkout the code
+      # 1. Checkout the code - Explicit token helps with authentication issues
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # Explicitly pass the token to prevent authentication issues during checkout
           token: ${{ secrets.GITHUB_TOKEN }} 
 
       # 2. Setup .NET SDK
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
-          # Targets the .NET 9.0 runtime as configured in your Azure Web App
           dotnet-version: '9.x'
 
       # 3. Build the project
       - name: Build project
         run: dotnet build MyApi.csproj --configuration Release
 
-      # 4. Publish project to a specific directory
-      # This PowerShell script creates a clean publish directory and runs the publish command.
+      # 4. Publish project to the shortest possible relative path
+      # FIX: Using 'deploy-output' to avoid long path issues on Windows runners (Git error 128)
       - name: Publish project
         run: |
-          $publishDir = "$PWD\publish\myapp"
+          # Use a very short path directly at the root of the workspace
+          $publishDir = "deploy-output"
           # Ensure directory is clean before publishing
           if (Test-Path $publishDir) { Remove-Item $publishDir -Recurse -Force }
           mkdir $publishDir
+          # Publish the project directly to the short path
           dotnet publish MyApi.csproj --configuration Release --output $publishDir
           echo "Published to $publishDir"
 
@@ -49,12 +49,13 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dotnet-app # Name of the artifact to be downloaded later
-          path: publish\myapp # Path matches the output directory used in the Publish step
+          name: dotnet-app 
+          # Use the new, short path
+          path: deploy-output 
 
   deploy:
     runs-on: windows-latest
-    needs: build # This job only runs if the 'build' job succeeds
+    needs: build
     permissions:
       id-token: write # Required for secure Azure login (OIDC)
       contents: read
@@ -65,7 +66,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dotnet-app
-          # Artifact contents (the published files) are placed directly in the workspace root (./)
+          # Artifact contents are placed directly in the workspace root (./)
 
       # 2. Login to Azure using the Service Principal secrets you configured
       - name: Login to Azure
