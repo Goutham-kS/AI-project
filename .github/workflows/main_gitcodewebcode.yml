@@ -3,34 +3,38 @@ name: Build and deploy ASP.Net Core app to Azure Web App - gitCodeWebCode
 on:
   push:
     branches:
+      # Workflow runs automatically when code is pushed to the 'main' branch
       - main
   workflow_dispatch:
+    # Allows manual trigger of the workflow from the GitHub Actions UI
 
 jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: read
+      contents: read # Required to checkout the code
 
     steps:
-      # Checkout the code - Added token for explicit authentication
+      # 1. Checkout the code
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Explicitly pass the token to prevent authentication issues during checkout
+          token: ${{ secrets.GITHUB_TOKEN }} 
 
-      # Setup .NET SDK
+      # 2. Setup .NET SDK
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
+          # Targets the .NET 9.0 runtime as configured in your Azure Web App
           dotnet-version: '9.x'
 
-      # Build the project
+      # 3. Build the project
       - name: Build project
         run: dotnet build MyApi.csproj --configuration Release
 
-      # Publish project to a relative path
-      # Uses $PWD\publish\myapp as the publish directory
+      # 4. Publish project to a specific directory
+      # This PowerShell script creates a clean publish directory and runs the publish command.
       - name: Publish project
         run: |
           $publishDir = "$PWD\publish\myapp"
@@ -41,29 +45,29 @@ jobs:
           echo "Published to $publishDir"
 
 
-      # Upload published files as artifact
+      # 5. Upload published files as artifact
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dotnet-app
+          name: dotnet-app # Name of the artifact to be downloaded later
           path: publish\myapp # Path matches the output directory used in the Publish step
 
   deploy:
     runs-on: windows-latest
-    needs: build
+    needs: build # This job only runs if the 'build' job succeeds
     permissions:
-      id-token: write
+      id-token: write # Required for secure Azure login (OIDC)
       contents: read
 
     steps:
-      # Download artifact from build job
+      # 1. Download artifact from build job
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: dotnet-app
-          # Artifact contents are downloaded to the root of this job's workspace (./)
+          # Artifact contents (the published files) are placed directly in the workspace root (./)
 
-      # Login to Azure
+      # 2. Login to Azure using the Service Principal secrets you configured
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -72,10 +76,11 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6C95A165729F4E299D027031220DE959 }}
 
       
-      # FIX: The package path is corrected to '.' to point to the downloaded artifact contents.
+      # 3. Deploy to Azure Web App
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'gitCodeWebCode'
           slot-name: 'Production'
+          # FIX: '.' correctly points to the directory containing the downloaded artifact
           package: . 
