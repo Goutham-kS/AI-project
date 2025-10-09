@@ -7,16 +7,16 @@
     <GitCommitHash>ad4aae50a0eda16332a3e3835b24c761cac6574e</GitCommitHash>
   </PropertyGroup>
 
-<ItemGroup>
-  <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
-  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.9" />
-  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.9" />
-  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.9">
-    <PrivateAssets>all</PrivateAssets>
-    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-  </PackageReference>
-  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
-</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+  </ItemGroup>
 
-</Project>>
+</Project>
