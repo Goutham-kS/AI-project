@@ -1,15 +1,15 @@
-# ================================
-# Build Folders
-# ================================
+================================
+Build Folders
+================================
 bin/
 obj/
 out/
 Debug/
 Release/
 
-# ================================
-# Visual Studio / Rider / IDE files
-# ================================
+================================
+Visual Studio / Rider / IDE files
+================================
 .vs/
 *.user
 *.suo
@@ -17,12 +17,12 @@ Release/
 *.sln.docstates
 .idea/
 
-# ================================
-# .NET Core / .NET temporary files
-# ================================
+================================
+.NET Core / .NET temporary files
+================================
 *.dotCover
-*.ncrunch*
-*.ReSharper*
+.ncrunch
+.ReSharper
 *.resharper
 *.DotSettings.user
 *.dbmdl
@@ -30,31 +30,32 @@ Release/
 *.cache
 *.log
 
-# ================================
-# Rider / JetBrains
-# ================================
+================================
+Rider / JetBrains
+================================
 .idea/
 
-# ================================
-# NuGet Packages
-# ================================
+================================
+NuGet Packages
+================================
 *.nupkg
-# The packages folder can be ignored because of Package Restore
-**/packages/*
-!**/packages/build/
-!**/packages/repositories.config
 
-# ================================
-# Publish / Deployment Folders
-# ================================
+The packages folder can be ignored because of Package Restore
+/packages/
+!/packages/build/
+!*/packages/repositories.config
+
+================================
+Publish / Deployment Folders
+================================
 publish/
 *.publishsettings
 *.pubxml
 *.pubxml.user
 
-# ================================
-# Others
-# ================================
+================================
+Others
+================================
 *.vsix
 *.local
 *.vsconfig
