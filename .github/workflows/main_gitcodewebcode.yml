@@ -3,72 +3,61 @@ name: Build and deploy ASP.Net Core app to Azure Web App - gitCodeWebCode
 on:
   push:
     branches:
-      # Workflow runs automatically when code is pushed to the 'main' branch
       - main
   workflow_dispatch:
-    # Allows manual trigger of the workflow from the GitHub Actions UI
 
 jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: read # Required to checkout the code
+      contents: read
 
     steps:
-      # 1. Checkout the code - Explicit token helps with authentication issues
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }} 
+      # Checkout the code
+      - uses: actions/checkout@v4
 
-      # 2. Setup .NET SDK
+      # Setup .NET SDK
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.x'
 
-      # 3. Build the project
+      # Build the project
       - name: Build project
         run: dotnet build MyApi.csproj --configuration Release
 
-      # 4. Publish project to the shortest possible relative path
-      # FIX: Using 'deploy-output' to avoid long path issues on Windows runners (Git error 128)
+      # Publish project to a relative path
+      
       - name: Publish project
         run: |
-          # Use a very short path directly at the root of the workspace
-          $publishDir = "deploy-output"
-          # Ensure directory is clean before publishing
+          $publishDir = "$PWD\publish\myapp"
           if (Test-Path $publishDir) { Remove-Item $publishDir -Recurse -Force }
           mkdir $publishDir
-          # Publish the project directly to the short path
           dotnet publish MyApi.csproj --configuration Release --output $publishDir
           echo "Published to $publishDir"
 
-
-      # 5. Upload published files as artifact
+      # Upload published files as artifact
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dotnet-app 
-          # Use the new, short path
-          path: deploy-output 
+          name: dotnet-app
+          path: publish\myapp
 
   deploy:
     runs-on: windows-latest
     needs: build
     permissions:
-      id-token: write # Required for secure Azure login (OIDC)
+      id-token: write
       contents: read
 
     steps:
-      # 1. Download artifact from build job
+      # Download artifact from build job
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: dotnet-app
-          # Artifact contents are placed directly in the workspace root (./)
 
-      # 2. Login to Azure using the Service Principal secrets you configured
+      # Login to Azure
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -76,12 +65,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_12611FAE0C004686AC3899A91E69430C }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6C95A165729F4E299D027031220DE959 }}
 
-      
-      # 3. Deploy to Azure Web App
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'gitCodeWebCode'
           slot-name: 'Production'
-          # FIX: '.' correctly points to the directory containing the downloaded artifact
-          package: . 
+          #package: dotnet-app/publish/myapp
+          package: .
